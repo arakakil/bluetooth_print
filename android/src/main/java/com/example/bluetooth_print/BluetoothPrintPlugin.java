@@ -448,7 +448,7 @@ public class BluetoothPrintPlugin implements FlutterPlugin, ActivityAware, Metho
         startScan(pendingCall, pendingResult);
       } else {
         pendingResult.error("no_permissions", "this plugin requires location permissions for scanning", null);
-        pendingResult = null;
+        //pendingResult = null;
       }
       return true;
     }
