@@ -165,11 +165,12 @@ public class BluetoothPrintPlugin implements FlutterPlugin, ActivityAware, Metho
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
+    try{
     if (mBluetoothAdapter == null && !"isAvailable".equals(call.method)) {
       result.error("bluetooth_unavailable", "the device does not have bluetooth", null);
       return;
     }
-
+    Log.d(TAG, "onMethodCall: "+call.method);
     switch (call.method){
       case "state":
         state(result);
@@ -219,6 +220,8 @@ public class BluetoothPrintPlugin implements FlutterPlugin, ActivityAware, Metho
       default:
         result.notImplemented();
         break;
+    }}catch (Exception e){
+      result.error("onMethodCall",  e.getMessage(), e);
     }
 
   }
